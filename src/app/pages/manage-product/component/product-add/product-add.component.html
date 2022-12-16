@@ -1,0 +1,69 @@
+<section class="wrap">
+  <h1 class="title">Thêm Sản Phẩm</h1>
+  <form class="form" [formGroup]="form" nz-form (ngSubmit)="submitForm()">
+    <div class="form-left">
+      <div class="group-form">
+        <label class="item-label">Tên sản phẩm: </label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Vui Lòng nhập tên sản phẩm!">
+            <input nz-input  formControlName="name" placeholder="Tên sản phẩm" nzSize="default" class="item-input"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="group-form">
+        <label class="item-label">Danh mục sản phẩm:</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Vui lòng chọn danh mục sản phẩm!">
+            <nz-select nzSize="default"  class="item-input" nzPlaceHolder="Danh mục sản phẩm" formControlName="categoryId">
+              <nz-option *ngFor="let o of listOfOptionCategory" [nzValue]="o.id" [nzLabel]="o.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="group-form">
+        <label class="item-label">Size:</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Vui Lòng nhập size!">
+            <nz-select formControlName="sizes" class="item-input" nzSize="default" nzMode="multiple" nzPlaceHolder="Size" class="w-full">
+              <nz-option *ngFor="let o of listOfOptionSize" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="group-form">
+        <label class="item-label">Giá sản phẩm: </label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Vui Lòng nhập giá!">
+            <nz-input-number class="item-input"  formControlName="price" nzPlaceHolder="Giá sản phẩm" [nzStep]="100"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="group-form">
+        <label class="item-label">Số lượng sản phẩm: </label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Vui Lòng nhập số lượng sản phẩm!">
+            <nz-input-number class="item-input"  formControlName="total" nzPlaceHolder="Giá số lượng sản phẩm" [nzStep]="5"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="group-form">
+        <label class="item-label">Mô tả sản phẩm:</label>
+        <textarea nz-input formControlName="description" placeholder="Mô tả sản phẩm" class="item-input"></textarea>
+      </div>
+    </div>
+    <div class="form-right">
+      <label class="item-label">Ảnh sản phẩm</label>
+      <div class="img">
+        <img id="blah" [src]="imageSrc"/>
+      </div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Vui lòng chọn ảnh !">
+          <input type='file' (change)="readURL($event)"  formControlName="file" class="input-img"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <button nz-button nzType="primary" nzSize="default" nzShape="round">Thêm sản phẩm</button>
+  </form>
+
+</section>
+

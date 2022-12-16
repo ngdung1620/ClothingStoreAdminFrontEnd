@@ -1,0 +1,36 @@
+<div class="header flex justify-between mb-3 items-center">
+  <button routerLink="/manage-product/product-add" class="px-3 py-2 bg-blue-600 rounded-lg text-white">Thêm sản phẩm</button>
+  <nz-input-group class="w-1/2 mb-3 float-right" nzSearch [nzAddOnAfter]="suffixIconButton" (click)="handleSearch()">
+    <input  [(ngModel)]="search" type="text" nz-input placeholder="Tìm kiếm sản phẩm" />
+  </nz-input-group>
+</div>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+</ng-template>
+<nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]="false">
+  <thead>
+  <tr>
+    <th>Tên sản phẩm</th>
+    <th>Ảnh</th>
+    <th>Giá</th>
+    <th>Số lượng sản phẩm</th>
+    <th width="100px">Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.name }}</td>
+    <td>
+      <img [src]="data.img"  class="img" alt="">
+    </td>
+    <td>{{data.price}}</td>
+    <td>{{data.total}}</td>
+    <td>
+      <span nz-icon class="text-xl text-orange-600 mr-2 cursor-pointer" nzType="edit" (click)="handleEdit(data)" nzTheme="outline"></span>
+      <span nz-icon class="text-xl text-red-600 cursor-pointer" (click)="handleDelete(data.id)" nzType="delete" nzTheme="outline"></span>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-pagination  class="pagination" [nzPageIndex]="pageIndex" [nzTotal]="total" [nzPageSize]="pageSize" (nzPageIndexChange)="handleChange($event)"></nz-pagination>
+

@@ -1,0 +1,17 @@
+.wrap {
+  .form {
+    @apply flex flex-col justify-between;
+    .form-item {
+      @apply flex ;
+      nz-form-label {
+        flex: 1;
+      }
+      nz-form-control {
+       flex: 9;
+      }
+    }
+  }
+  .title {
+    @apply text-center text-3xl text-blue-700 font-bold mb-4;
+  }
+}

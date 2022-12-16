@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { OrderApprovalComponent } from './order-approval.component';
+
+describe('OrderApprovalComponent', () => {
+  let component: OrderApprovalComponent;
+  let fixture: ComponentFixture<OrderApprovalComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ OrderApprovalComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(OrderApprovalComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

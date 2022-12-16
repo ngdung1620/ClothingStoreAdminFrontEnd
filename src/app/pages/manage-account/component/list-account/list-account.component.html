@@ -1,0 +1,34 @@
+<nz-input-group class="w-1/2 mb-3 float-right" nzSearch [nzAddOnAfter]="suffixIconButton" (click)="handleSearch()">
+  <input  type="text" [(ngModel)]="search" nz-input placeholder="Tìm kiếm người dùng" />
+</nz-input-group>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+</ng-template>
+<nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]="false">
+  <thead>
+  <tr>
+    <th>Họ và tên</th>
+    <th>Ngày sinh</th>
+    <th>Giới tính</th>
+    <th>Địa chỉ</th>
+    <th>Số điện thoại</th>
+    <th>Email</th>
+    <th width="120px">Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.fullName }}</td>
+    <td>{{ data.doB | date:'dd-MM-yyyy' }}</td>
+    <td>{{ data.gender == 0 ? "Nam" : "Nữ" }}</td>
+    <td>{{ data.address }}</td>
+    <td>{{ data.phoneNumber }}</td>
+    <td>{{ data.email }}</td>
+    <td>
+      <span nz-icon class="text-xl text-orange-600 mr-2 cursor-pointer" nzType="edit" (click)="handleEdit(data)" nzTheme="outline"></span>
+      <span nz-icon class="text-xl text-red-600 cursor-pointer" (click)="handleDelete(data.userId)" nzType="delete" nzTheme="outline"></span>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-pagination  class="pagination" [nzPageIndex]="pageIndex" [nzTotal]="pageTotal" [nzPageSize]="pageSize" (nzPageIndexChange)="handleChange($event)"></nz-pagination>

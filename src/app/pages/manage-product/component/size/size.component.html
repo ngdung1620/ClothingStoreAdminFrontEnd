@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <div class="title">Quản Lý Size</div>
+  <div class="group-category">
+    <form nz-form [formGroup]="formData" (ngSubmit)="handleSubmit()" class="form" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label>
+          <span>Tên Size:</span>
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Tên size không được bổ trống!">
+          <nz-input-number class="w-full" id="name" formControlName="name"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control>
+          <button class="btn">Thêm Size</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <nz-table #basicTable [nzData]="listOfData" [nzPageSize]="5" >
+      <thead>
+      <tr>
+        <th>Tên size</th>
+        <th width="120px">Thao tác</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data, let i = index">
+        <td>{{data.name}}</td>
+        <td>
+          <span nz-icon class="icon-edit" nzType="edit" (click)="handleEdit(data)" nzTheme="outline"></span>
+          <span nz-icon class="icon-delete" (click)="handleClick(data.id)" nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle= "Chỉnh Sửa Size" (nzOnCancel)="handleCancel()">
+    <div *nzModalContent>
+      <form nz-form [formGroup]="formEdit" class="form" nzLayout="vertical">
+        <nz-form-item>
+          <nz-form-label>
+            <span>Tên Size:</span>
+          </nz-form-label>
+          <nz-form-control nzErrorTip="Tên size không được bổ trống!">
+            <nz-input-number class="w-full"  formControlName="name"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()"> Hủy </button>
+      <button nz-button nzType="primary" (click)="handleOk()">Cập nhật</button>
+    </div>
+  </nz-modal>
+</div>
+

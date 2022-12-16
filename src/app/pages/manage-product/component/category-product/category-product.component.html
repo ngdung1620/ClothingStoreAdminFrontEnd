@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <div class="title">Quản Lí Danh Mục Sản Phẩm</div>
+  <div class="group-category">
+    <form nz-form nzLayout="vertical" [formGroup]="formData" (ngSubmit)="handleSubmit()">
+      <nz-form-item>
+        <nz-form-label>Tên Danh Mục Sản Phẩm</nz-form-label>
+        <nz-form-control nzErrorTip="Tên danh mục không được để trống !">
+          <input nz-input formControlName="name"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Nhóm Danh Mục Sản Phẩm</nz-form-label>
+        <nz-form-control nzErrorTip="Chọn nhóm danh mục không được để trống !">
+          <nz-select nzPlaceHolder="Chọn nhóm danh mục" formControlName="groupCategoryId">
+            <nz-option *ngFor="let groupCategory of listGroupCategory" nzLabel="{{groupCategory.name}}" nzValue="{{groupCategory.id}}"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control>
+          <button class="btn">Thêm danh mục sản phẩm</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <nz-table #basicTable [nzData]="listOfData" [nzPageSize]="5">
+      <thead>
+      <tr>
+        <th>Tên</th>
+        <th width="120px">Thao tác</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data, let i = index">
+        <td>{{data.name}}</td>
+        <td>
+          <span nz-icon class="text-xl text-orange-600 mr-2 cursor-pointer" nzType="edit" (click)="handleEdit(data)" nzTheme="outline"></span>
+          <span nz-icon class="text-xl text-red-600 cursor-pointer" (click)="handleDelete(data.id)" nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Chỉnh sửa nhóm danh mục" (nzOnCancel)="handleCancel()">
+    <div *nzModalContent>
+      <form nz-form nzLayout="vertical" [formGroup]="formEdit" (ngSubmit)="handleSubmit()">
+        <nz-form-item>
+          <nz-form-label>Tên Danh Mục Sản Phẩm</nz-form-label>
+          <nz-form-control nzErrorTip="Tên danh mục không được để trống !">
+            <input nz-input formControlName="name"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>Nhóm Danh Mục Sản Phẩm</nz-form-label>
+          <nz-form-control nzErrorTip="Chọn nhóm danh mục không được để trống !">
+            <nz-select nzPlaceHolder="Chọn nhóm danh mục" formControlName="groupCategoryId">
+              <nz-option *ngFor="let groupCategory of listGroupCategory" nzLabel="{{groupCategory.name}}" nzValue="{{groupCategory.id}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()"> Hủy </button>
+      <button nz-button nzType="primary" (click)="handleOk()">Cập nhập</button>
+    </div>
+  </nz-modal>
+</div>

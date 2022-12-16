@@ -1,0 +1,88 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="#" >
+        <img src="assets/img/logoshop.png" alt="logo" class="logo-img">
+        <h1 class="logo-title" style="font-size: 18px">Gấu Shop</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nzMatchRouter routerLink="/welcome">
+        <span nz-icon nzType="home"></span>
+        <span>Trang Chủ</span>
+      </li>
+      <li nz-submenu  nzTitle="Quản Lí Tài Khoản" nzIcon="solution">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-account/add-account">
+            <a>Thêm Tài Khoản</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-account/list-account">
+            <a>Danh Sách Tài Khoản</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Quản Lí Sản Phẩm" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-product/product-add">
+            <a>Thêm Sản Phẩm</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-product/product-list">
+            <a>Danh Sách Sản Phẩm</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-product/product-category">
+            <a>Danh Mục</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-product/group-category">
+            <a>Nhóm Danh Mục</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-product/size">
+            <a>Size</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Quản Lí Đơn Hàng" nzIcon="profile">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-order/order-approval">
+            <a>Đơn Chờ Phê Duyệt</a>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="./manage-order/order-list">
+            <a>Danh Sách Đơn Hàng</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div><span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger"
+                  nz-icon
+                  [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></span>
+        </span></div>
+        <div class="account-user">
+          <span nz-dropdown [nzDropdownMenu]="menu">
+           {{userName}}
+          </span>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="handleLogout()">Đăng xuất</li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content overflow-y-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+

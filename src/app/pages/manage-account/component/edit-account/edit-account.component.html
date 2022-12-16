@@ -1,0 +1,72 @@
+<section class="wrap relative">
+  <span nz-icon nzType="left" class="absolute top-3 cursor-pointer"  routerLink="/manage-account/list-account" nzTheme="outline"></span>
+  <h1 class="title">Cập nhập tài khoản</h1>
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzRequired
+      >
+        <span>Họ Và Tên</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Vui lòng nhập tên!">
+        <input nz-input id="name" formControlName="fullName" placeholder="Nguyễn Văn A" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" [nzSm]="6" [nzXs]="24" nzFor="gender" nzRequired>Giới Tính</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzSpan]="12" nzErrorTip="Vui lòng nhập giới tính!">
+        <nz-select
+          id="gender"
+          formControlName="gender"
+          nzPlaceHolder="Chọn giới tính"
+        >
+          <nz-option nzValue="0" nzLabel="Nam"></nz-option>
+          <nz-option nzValue="1" nzLabel="Nữ"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Ngày Sinh</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="dateerror">
+        <input nz-input type="date" formControlName="doB" id="date" />
+        <ng-template #dateerror let-control>
+          <ng-container *ngIf="control.hasError('required')">Vui lòng nhật ngày sinh!</ng-container>
+          <ng-container *ngIf="control.hasError('c')">
+            Giá trị ngày sinh không hợp lệ!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Địa Chỉ</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Vui lòng nhập địa chỉ!">
+        <input nz-input id="address" formControlName="address" placeholder="Địa chỉ" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Số điện thoại</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Vui lòng nhập số điện thoại">
+        <input nz-input  formControlName="phoneNumber" placeholder="Số điện thoại" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" [nzSm]="6" [nzXs]="24" nzFor="role" nzRequired>Vai Trò</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzSpan]="12" nzErrorTip="Vui Lòng nhập vai trò!">
+        <nz-select
+          id="role"
+          formControlName="role"
+          nzPlaceHolder="Vai Trò"
+        >
+          <nz-option *ngFor="let o of listDataOfRole" [nzValue]="o.name" [nzLabel]="o.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6" class="text-center">
+        <button nz-button nzType="primary">Cập nhật</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</section>

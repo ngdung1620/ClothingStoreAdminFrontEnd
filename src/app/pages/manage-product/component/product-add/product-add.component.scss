@@ -1,0 +1,36 @@
+.wrap {
+  .title {
+    @apply text-center text-2xl font-bold text-blue-700 mb-6;
+  }
+  .form {
+    @apply grid grid-cols-5 gap-4 text-base;
+    .group-form {
+      @apply flex flex-col;
+      .item-label {
+        @apply mb-2
+      }
+      .item-input {
+        @apply w-full;
+      }
+    }
+    .form-left {
+      @apply col-span-3;
+    }
+    .form-right {
+      @apply col-span-2 flex flex-col text-center items-center;
+      .item-label {
+        @apply text-xl  mt-2 mb-4 font-medium
+      }
+      .img {
+        @apply my-4;
+        width: 180px;
+        height: 220px;
+        border: #cccc 1px solid;
+        img {
+          @apply w-full h-full;
+          object-fit: fill;
+        }
+      }
+    }
+  }
+}
