@@ -73,6 +73,7 @@ export class ProductAddComponent implements OnInit {
       for(let i = 0; i < this.form.value.sizes.length;i++){
         formData.append("sizes",this.form.value.sizes[i]);
       }
+      console.log(formData)
       this.productService.createProduct(formData).subscribe(res => {
         this.notification.success("Thành công", "Thêm sản phẩm thành công");
         this.form.reset();

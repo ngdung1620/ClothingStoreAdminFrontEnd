@@ -1,0 +1,93 @@
+<div class="wrap">
+  <h1 class="title">Báo Cáo Doanh Thu</h1>
+  <div class="time">
+    <div class="option-time">
+      <label class="option-title">Loại thời gian</label>
+      <nz-select [(ngModel)]="optionTime" (ngModelChange)="handleChangeOptionTime($event)">
+        <nz-option nzValue="0" nzLabel="Báo cáo theo ngày"></nz-option>
+        <nz-option nzValue="1" nzLabel="Báo cáo theo tháng"></nz-option>
+      </nz-select>
+    </div>
+    <form nz-form class="update-time" [formGroup]="formData">
+      <nz-form-item *ngIf="optionUpdate == 0">
+        <div class="item-time">
+          <label  class="item-title">Ngày bắt đầu</label>
+          <nz-form-control nzErrorTip="Vui lòng không bỏ trống">
+            <input class="time-input" formControlName="startTime" type="date" max="{{date}}">
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+      <nz-form-item *ngIf="optionUpdate == 0">
+        <div class="item-time">
+          <label  class="item-title">Ngày kết thúc</label>
+          <nz-form-control nzErrorTip="Vui lòng không bỏ trống">
+            <input class="time-input" formControlName="finishTime" type="date" max="{{date}}">
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+      <nz-form-item *ngIf="optionUpdate == 1">
+        <div class="item-time">
+          <label  class="item-title">Tháng bắt đầu</label>
+          <nz-form-control nzErrorTip="Vui lòng không bỏ trống">
+            <input class="time-input" formControlName="startTime" type="month" max="{{date}}">
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+      <nz-form-item *ngIf="optionUpdate == 1">
+        <div class="item-time">
+          <label  class="item-title">Tháng kết thúc</label>
+          <nz-form-control nzErrorTip="Vui lòng không bỏ trống">
+            <input class="time-input" formControlName="finishTime" type="month" max="{{date}}">
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+    </form>
+    <button class="btn" (click)="handleSearch()">Tìm kiếm</button>
+  </div>
+  <div class="result">
+    <div class="result-item">
+      <i class="fa-solid fa-tag icon"></i>
+      <div class="info">
+        <span class="info-number">{{totalOrder}}</span>
+        <span class="info-title">Tổng Đơn hàng</span>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fa-solid fa-sack-dollar icon"></i>
+     <div class="info">
+       <span class="info-number">{{convertNumber(totalRevenue)}}</span>
+       <span class="info-title">Doanh thu</span>
+     </div>
+    </div>
+    <div class="result-item">
+      <i class="fa-solid fa-truck icon"></i>
+      <div class="info">
+        <span class="info-number">{{convertNumber(totalShip)}}</span>
+        <span class="info-title">Tổng tiền ship</span>
+      </div>
+    </div>
+  </div>
+  <div class="detail">
+    <h1 class="detail-title">Chi Tiết</h1>
+    <nz-table #basicTable [nzData]="listOfData">
+      <thead>
+      <tr>
+        <th>Mã đơn hàng</th>
+        <th>Ngày đặt hàng</th>
+        <th>Tên khách hàng</th>
+        <th>Số điện thoại</th>
+        <th>Tổng tiền</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>#{{ data.orderId.slice(0,7)}}</td>
+        <td>{{ handleData(data.orderDate) }}</td>
+        <td>{{data.customerName}}</td>
+        <td>{{data.phoneNumber}}</td>
+        <td class="price">{{ convertNumber(data.totalPrice)}}đ</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

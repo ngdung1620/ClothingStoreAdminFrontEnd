@@ -1,1 +1,44 @@
-<p>order-list works!</p>
+<div class="wrap">
+  <h1 class="title">Danh sách đơn hàng</h1>
+  <div class="form-search">
+   <div class="search-input">
+     <nz-input-group class="w-1/2 mb-3" nzSearch [nzAddOnAfter]="suffixIconButton">
+       <input  type="text" [(ngModel)]="search" nz-input placeholder="Nhập mã đơn hàng hoặc tên khách hàng hoăc số điện thoại" />
+     </nz-input-group>
+     <ng-template #suffixIconButton>
+       <button nz-button nzType="primary" nzSearch  (click)="handleClickSearch()"><span nz-icon nzType="search"></span></button >
+     </ng-template>
+   </div>
+    <nz-select class="search-select" [(ngModel)]="status" (ngModelChange)="handleChangeStatus($event)">
+      <nz-option nzValue="0" nzLabel="Tất cả"></nz-option>
+      <nz-option nzValue="1" nzLabel="Chờ phê duyệt"></nz-option>
+      <nz-option nzValue="2" nzLabel="Chờ giao hàng"></nz-option>
+      <nz-option nzValue="3" nzLabel="Đang giao"></nz-option>
+      <nz-option nzValue="4" nzLabel="Hoàn thành"></nz-option>
+      <nz-option nzValue="-1" nzLabel="Đã huỷ"></nz-option>
+    </nz-select>
+  </div>
+  <nz-table #basicTable [nzData]="listOfData" [nzShowPagination]="false">
+    <thead>
+    <tr>
+      <th>Mã đơn hàng</th>
+      <th>Ngày đặt hàng</th>
+      <th>Tên khách hàng</th>
+      <th>Số điện thoại</th>
+      <th>Tổng tiền</th>
+      <th>Trạng thái</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td class="code" (click)="handleClick(data.orderId)">#{{ data.orderId.slice(0,7)}}</td>
+      <td>{{ handleData(data.orderDate) }}</td>
+      <td>{{data.customerName}}</td>
+      <td>{{data.phoneNumber}}</td>
+      <td class="price">{{ convertNumber(data.totalPrice)}}đ</td>
+      <td><span [ngClass]="handleClassStatus(data.status)">{{ handleStatus(data.status) }}</span></td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="totalPage" [nzPageSize]="pageSize" (nzPageIndexChange)="handleChangeIndex($event)"></nz-pagination>
+</div>

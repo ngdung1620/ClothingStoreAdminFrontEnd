@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl, FormArray,
+  AbstractControl,
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup, ValidationErrors,
@@ -10,7 +10,6 @@ import {
 import {AccountService} from "../../services/account.service";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {CreateUserRequest} from "../../models/accountModels";
-import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 @Component({
   selector: 'app-add-account',
@@ -105,7 +104,7 @@ export class AddAccountComponent implements OnInit {
           this.notification.error("Thất bại",res.message)
         }
         this.validateForm.reset();
-      },error => {
+      },() => {
         this.notification.error("Lỗi","Thêm không thành công");
       })
     } else {

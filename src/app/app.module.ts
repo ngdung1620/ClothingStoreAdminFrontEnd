@@ -8,7 +8,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -18,6 +18,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
 import {JwtModule} from "@auth0/angular-jwt";
 import {UnauthorizedComponent} from "./core/component/unauthorized/unauthorized.component";
 import {NotFoundComponent} from "./core/component/not-found/not-found.component";
+import {LoadingComponent} from "./core/component/loading/loading.component";
+import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 
 registerLocaleData(en);
 
@@ -25,7 +27,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     UnauthorizedComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,10 @@ registerLocaleData(en);
     }),
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

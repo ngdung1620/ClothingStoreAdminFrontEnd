@@ -1,0 +1,43 @@
+.wrap {
+  .title {
+    @apply text-center font-bold text-3xl mb-10 text-blue-600;
+  }
+  .form-search {
+    @apply flex w-full items-center justify-between mb-3;
+    .search-input {
+      width: 40%;
+      nz-input-group {
+        @apply w-full;
+      }
+    }
+    nz-select {
+      margin: 0 8px 10px 0;
+      width: 25%;
+
+    }
+  }
+  .code {
+    @apply text-blue-600 cursor-pointer;
+    &:hover {
+      @apply text-pink-600 underline;
+    }
+  }
+  .approval {
+    @apply bg-orange-500 text-white rounded py-1 px-2;
+  }
+  .delivering {
+    @apply bg-yellow-500 text-white rounded py-1 px-2;
+  }
+  .finished {
+    @apply bg-blue-500 text-white rounded py-1 px-2;
+  }
+  .cancel {
+    @apply bg-red-600 text-white rounded py-1 px-2;
+  }
+  .price {
+    @apply text-red-600 text-base font-medium;
+  }
+  nz-pagination {
+    @apply mt-4 float-right;
+  }
+}

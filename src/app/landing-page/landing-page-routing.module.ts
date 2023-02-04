@@ -11,6 +11,7 @@ const routes: Routes = [
       { path: 'manage-account',loadChildren: () => import('../pages/manage-account/manage-account.module').then(m => m.ManageAccountModule)},
       { path: 'manage-product', loadChildren: () => import('../pages/manage-product/manage-product.module').then(m => m.ManageProductModule)},
       { path: 'manage-order', loadChildren: () => import('../pages/manage-order/manage-order.module').then(m => m.ManageOrderModule)},
+      { path: 'revenue', loadChildren: () => import('../revenue/revenue.module').then(m => m.RevenueModule)}
     ]
   }
 ];
