@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RevenueService} from "./services/revenue.service";
 import {OrderModel} from "../pages/manage-order/models/order";
+import {RevenueRequest} from "./models/revenueModel";
 
 @Component({
   selector: 'app-revenue',
@@ -62,7 +63,12 @@ export class RevenueComponent implements OnInit {
     return s;
   }
   getRevenue(){
-    this.revenueService.getRevenue(this.formData.value).subscribe(res => {
+    const data:RevenueRequest = {
+      optionUpdate: this.optionUpdate,
+      startTime: this.formData.value.startTime,
+      finishTime: this.formData.value.finishTime
+    }
+    this.revenueService.getRevenue(data).subscribe(res => {
       this.listOfData = res;
       res.forEach(o => {
         this.totalRevenue += o.totalPrice;
