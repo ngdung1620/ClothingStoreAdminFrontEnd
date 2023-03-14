@@ -63,6 +63,7 @@ export class ProductAddComponent implements OnInit {
 
   submitForm() {
     if (this.form.valid) {
+      console.log("bào được rồi")
       const formData = new FormData();
       formData.append("name",this.form.value.name);
       formData.append("price",this.form.value.price);
@@ -73,7 +74,6 @@ export class ProductAddComponent implements OnInit {
       for(let i = 0; i < this.form.value.sizes.length;i++){
         formData.append("sizes",this.form.value.sizes[i]);
       }
-      console.log(formData)
       this.productService.createProduct(formData).subscribe(res => {
         this.notification.success("Thành công", "Thêm sản phẩm thành công");
         this.form.reset();

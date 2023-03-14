@@ -17,9 +17,9 @@ export interface OrderOptionRequest {
 export interface OrderOptionResponse {
   listOrder: OrderModel[];
   totalPage: number;
-  PageIndex: number;
-  PageSize: number;
-  TotalRecords: number;
+  pageIndex: number;
+  pageSize: number;
+  totalRecords: number;
 }
 export interface GetOrderResponse {
   orderId: string;

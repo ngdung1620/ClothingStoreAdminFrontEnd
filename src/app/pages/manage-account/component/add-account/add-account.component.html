@@ -33,7 +33,7 @@
         <ng-template #dateerror let-control>
           <ng-container *ngIf="control.hasError('required')">Vui lòng nhật ngày sinh!</ng-container>
           <ng-container *ngIf="control.hasError('c')">
-            Giá trị ngày sinh không hợp lệ!
+            Bạn phải trên 16 tuổi!
           </ng-container>
         </ng-template>
       </nz-form-control>

@@ -28,7 +28,7 @@ export class OrderListComponent implements OnInit {
     }
     this.orderService.getOrderOption(data).subscribe(res =>{
       this.listOfData = res.listOrder;
-      this.totalPage = res.totalPage;
+      this.totalPage = res.totalRecords;
     })
   }
   handleData(orderDate: string){
@@ -70,12 +70,12 @@ export class OrderListComponent implements OnInit {
     const data:OrderOptionRequest ={
       search: this.search,
       status: e,
-      pageIndex: this.pageIndex,
-      pageSize: this.pageSize,
+      pageIndex: 1,
+      pageSize: 5,
     }
     this.orderService.getOrderOption(data).subscribe(res => {
       this.listOfData = res.listOrder;
-      this.totalPage = res.totalPage;
+      this.totalPage = res.totalRecords;
     });
   }
 
@@ -83,12 +83,12 @@ export class OrderListComponent implements OnInit {
     const data:OrderOptionRequest ={
       search: this.search,
       status: Number(this.status),
-      pageIndex: this.pageIndex,
-      pageSize: this.pageSize,
+      pageIndex: 1,
+      pageSize: 5,
     }
     this.orderService.getOrderOption(data).subscribe(res => {
       this.listOfData = res.listOrder;
-      this.totalPage = res.totalPage;
+      this.totalPage = res.totalRecords;
     });
   }
 
@@ -96,12 +96,12 @@ export class OrderListComponent implements OnInit {
     const data:OrderOptionRequest ={
       search: this.search,
       status: Number(this.status),
-      pageIndex: this.pageIndex,
-      pageSize: $event,
+      pageIndex: $event,
+      pageSize: 5,
     }
     this.orderService.getOrderOption(data).subscribe(res => {
       this.listOfData = res.listOrder;
-      this.totalPage = res.totalPage;
+      this.totalPage = res.totalRecords;
     });
   }
 
